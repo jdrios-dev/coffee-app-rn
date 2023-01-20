@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, Text, Image, StyleSheet} from 'react-native';
+import colors from '../styles/colors';
 
 function CategoryPillComponent() {
   return (
@@ -15,15 +16,19 @@ function CategoryPillComponent() {
 
 const styles = StyleSheet.create({
   pillContainer: {
-    width: '50%',
+    width: '48%',
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 10,
+    backgroundColor: colors.primaryLigth,
+    padding: 8,
+    borderRadius: 30,
+    marginRight: 10,
   },
   img: {
     height: 30,
     width: 30,
-    backgroundColor: 'chocolate',
+    backgroundColor: colors.primary,
     borderRadius: 100,
     marginRight: 10,
   },

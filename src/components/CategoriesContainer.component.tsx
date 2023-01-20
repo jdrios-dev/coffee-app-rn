@@ -1,13 +1,14 @@
 import {View, Text, StyleSheet} from 'react-native';
 import React from 'react';
 import CategoryPillComponent from './CategoryPill.component';
+import colors from '../styles/colors';
 
 const CategoriesContainerComponent = () => {
   return (
     <View>
       <View style={[styles.header, styles.headerContainer]}>
-        <Text>Beverages</Text>
-        <Text>View All</Text>
+        <Text style={styles.categoryTitle}>Beverages</Text>
+        <Text style={styles.categoryButton}>View all</Text>
       </View>
       <View style={styles.categoriesContainer}>
         <CategoryPillComponent />
@@ -21,7 +22,7 @@ const CategoriesContainerComponent = () => {
 
 const styles = StyleSheet.create({
   categoriesContainer: {
-    height: 80,
+    height: 120,
     width: '100%',
     flexWrap: 'wrap',
   },
@@ -31,7 +32,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   headerContainer: {
-    padding: 10,
+    paddingVertical: 10,
+    alignItems: 'center',
+  },
+  categoryTitle: {
+    fontSize: 20,
+  },
+  categoryButton: {
+    color: colors.secondary,
   },
 });
 
