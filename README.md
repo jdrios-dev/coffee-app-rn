@@ -4,21 +4,21 @@ Design: https://dribbble.com/shots/18744192-Coffee-Delivery-App-Design
 
 ### Install the dependencies
 
-yarn install
+> yarn install
 
 ### To run ios app (Only works if you have a mac)
 
 Install pods
 
-cd ios && pod install
+> cd ios && pod install
 
 return to the root folder
 
-cd ..
+> cd ..
 
 run the project
 
-npx react-native run-ios
+> npx react-native run-ios
 
 And the emulator should open, and you could start to code!
 
@@ -26,10 +26,10 @@ And the emulator should open, and you could start to code!
 
 run metro
 
-npx react-native start
+> npx react-native start
 
 run the project
 
-npx react-native run-android
+> npx react-native run-android
 
 And the emulator should open, and you could start to code!
