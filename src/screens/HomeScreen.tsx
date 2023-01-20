@@ -12,6 +12,7 @@ const HomeScreen = () => {
   return (
     <SafeAreaView>
       <ScrollView
+        showsVerticalScrollIndicator={false}
         style={{
           padding: 15,
         }}>

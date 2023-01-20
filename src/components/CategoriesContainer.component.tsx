@@ -1,14 +1,19 @@
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Button} from 'react-native';
 import React from 'react';
 import CategoryPillComponent from './CategoryPill.component';
 import colors from '../styles/colors';
+import {useNavigation} from '@react-navigation/native';
 
 const CategoriesContainerComponent = () => {
+  const navigation = useNavigation();
   return (
     <View>
       <View style={[styles.header, styles.headerContainer]}>
         <Text style={styles.categoryTitle}>Beverages</Text>
-        <Text style={styles.categoryButton}>View all</Text>
+        <Button
+          title="View all"
+          onPress={() => navigation.navigate('DetailScreen')}
+        />
       </View>
       <View style={styles.categoriesContainer}>
         <CategoryPillComponent />
