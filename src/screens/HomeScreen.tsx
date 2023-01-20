@@ -13,6 +13,7 @@ const HomeScreen = () => {
     <SafeAreaView>
       <ScrollView
         showsVerticalScrollIndicator={false}
+        // eslint-disable-next-line react-native/no-inline-styles
         style={{
           padding: 15,
         }}>
