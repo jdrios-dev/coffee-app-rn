@@ -1,14 +1,14 @@
 import React from 'react';
 //import {useNavigation} from '@react-navigation/native';
-import {Text, View, StyleSheet} from 'react-native';
-import {ScrollView} from 'react-native-gesture-handler';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import {ScrollView, SafeAreaView} from 'react-native';
 import CarouselComponent from '../components/Carousel.component';
 import CategoriesContainerComponent from '../components/CategoriesContainer.component';
 import HomeHeaderComponent from '../components/HomeHeader.component';
+import {categories} from '../data';
 
 const HomeScreen = () => {
   // const navigation = useNavigation();
+
   return (
     <SafeAreaView>
       <ScrollView
@@ -20,12 +20,9 @@ const HomeScreen = () => {
         <HomeHeaderComponent />
         <CarouselComponent />
 
-        <CategoriesContainerComponent />
-        <CategoriesContainerComponent />
-        <CategoriesContainerComponent />
-        <CategoriesContainerComponent />
-        <CategoriesContainerComponent />
-        <CategoriesContainerComponent />
+        {categories.map(item => (
+          <CategoriesContainerComponent key={item} category={item} />
+        ))}
       </ScrollView>
     </SafeAreaView>
   );

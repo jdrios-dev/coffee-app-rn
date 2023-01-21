@@ -1,15 +1,21 @@
 import React from 'react';
 import {View, Text, Image, StyleSheet} from 'react-native';
+import {Product} from '../data';
 import colors from '../styles/colors';
 
-function CategoryPillComponent() {
+type CategoryPillProps = {
+  product: Product;
+};
+
+function CategoryPillComponent({product}: CategoryPillProps) {
+  const {name} = product;
   return (
     <View style={styles.pillContainer}>
       <Image
         style={styles.img}
         source={{uri: 'https://icons8.com/icon/K-6n6MuHwv13/coffee-to-go'}}
       />
-      <Text>Chocolate</Text>
+      <Text>{name}</Text>
     </View>
   );
 }

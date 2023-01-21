@@ -3,23 +3,34 @@ import React from 'react';
 import CategoryPillComponent from './CategoryPill.component';
 import colors from '../styles/colors';
 import {useNavigation} from '@react-navigation/native';
+import {Category} from '../data/index';
+import {getProductosByCategory} from '../data/controller';
 
-const CategoriesContainerComponent = () => {
+type CategoryContainerProps = {
+  category: Category;
+};
+
+const CategoriesContainerComponent = ({category}: CategoryContainerProps) => {
   const navigation = useNavigation();
+  const products = getProductosByCategory(category);
+
   return (
     <View>
       <View style={[styles.header, styles.headerContainer]}>
-        <Text style={styles.categoryTitle}>Beverages</Text>
+        <Text style={styles.categoryTitle}>{category}</Text>
         <Button
           title="View all"
-          onPress={() => navigation.navigate('DetailScreen')}
+          onPress={() =>
+            navigation.navigate('CategoryScreen', {
+              category: category,
+            })
+          }
         />
       </View>
       <View style={styles.categoriesContainer}>
-        <CategoryPillComponent />
-        <CategoryPillComponent />
-        <CategoryPillComponent />
-        <CategoryPillComponent />
+        {products.map(item => (
+          <CategoryPillComponent key={item.id} product={item} />
+        ))}
       </View>
     </View>
   );
@@ -42,6 +53,7 @@ const styles = StyleSheet.create({
   },
   categoryTitle: {
     fontSize: 20,
+    textTransform: 'capitalize',
   },
   categoryButton: {
     color: colors.secondary,
