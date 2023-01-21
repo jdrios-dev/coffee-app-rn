@@ -35,7 +35,6 @@ const DetailScreen = ({route}) => {
           transparent={true}
           visible={modalVisible}
           onRequestClose={() => {
-            Alert.alert('Modal has been closed.');
             setModalVisible(!modalVisible);
           }}>
           <View style={styles.spacer} />
@@ -84,18 +83,11 @@ const styles = StyleSheet.create({
   },
   modalView: {
     marginTop: 'auto',
-    backgroundColor: 'white',
+    backgroundColor: colors.primaryLigth,
     borderRadius: 20,
     padding: 35,
     alignItems: 'center',
     shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
   },
   modalTitle: {
     fontSize: 16,
