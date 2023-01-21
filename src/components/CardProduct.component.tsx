@@ -1,20 +1,25 @@
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import React from 'react';
 import colors from '../styles/colors';
+import {useNavigation} from '@react-navigation/native';
 
 type CardProductProps = {
   name: string;
   price: number;
+  id: string;
 };
 
-const CardProductComponent = ({name, price}: CardProductProps) => {
+const CardProductComponent = ({name, price, id}: CardProductProps) => {
+  const navigation = useNavigation();
   return (
-    <View style={styles.card}>
+    <TouchableOpacity
+      style={styles.card}
+      onPress={() => navigation.navigate('DetailScreen', {id: id})}>
       <Text style={styles.cardName}>{name}</Text>
       <View style={styles.cardPriceChip}>
         <Text style={styles.cardPrice}>$ {price}</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

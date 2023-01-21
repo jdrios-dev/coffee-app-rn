@@ -2,11 +2,15 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import MyStack from './src/navigation/Navigation';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
+
 const App = () => {
   return (
-    <NavigationContainer>
-      <MyStack />
-    </NavigationContainer>
+    <SafeAreaProvider>
+      <NavigationContainer>
+        <MyStack />
+      </NavigationContainer>
+    </SafeAreaProvider>
   );
 };
 

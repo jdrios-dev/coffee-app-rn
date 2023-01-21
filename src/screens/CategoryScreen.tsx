@@ -4,13 +4,15 @@ import {
   View,
   Button,
   StyleSheet,
-  SafeAreaView,
   TouchableOpacity,
+  SafeAreaView,
 } from 'react-native';
 import CardProductComponent from '../components/CardProduct.component';
 import {categories} from '../data';
 import {getProductosByCategory} from '../data/controller';
 import colors from '../styles/colors';
+import {Product} from '../data/index';
+import ScreenHeaderBackComponent from '../components/ScreenHeaderBack.component';
 
 const CategoryScreen = ({route, navigation}) => {
   const {category: defaultCategory} = route.params;
@@ -18,79 +20,62 @@ const CategoryScreen = ({route, navigation}) => {
   const [category, setCategory] = useState(defaultCategory);
   const [products, setProducts] = useState([]);
   useEffect(() => {
-    const result = getProductosByCategory(category);
+    const result: Product[] = getProductosByCategory(category);
     setProducts(result);
   }, [category]);
 
   return (
-    <SafeAreaView style={styles.container}>
-      {/* Header */}
-      <View style={styles.header}>
-        <View style={styles.buttonBack}>
-          <Button title="X" onPress={() => navigation.pop()} />
-        </View>
-        <Text style={styles.titleMenu}>Menu</Text>
-      </View>
-      {/* Filter */}
+    <SafeAreaView>
+      <View style={styles.container}>
+        <ScreenHeaderBackComponent title="Menu" />
+        {/* Filter */}
 
-      <View style={styles.categoryContainer}>
-        {categories.map(item => (
-          <TouchableOpacity onPress={() => setCategory(item)}>
-            <View
-              style={
-                item === category
-                  ? styles.categoryItemActive
-                  : styles.categoryItem
-              }>
-              <Text
-                key={item}
+        <View style={styles.categoryContainer}>
+          {categories.map(item => (
+            <TouchableOpacity key={item} onPress={() => setCategory(item)}>
+              <View
                 style={
                   item === category
-                    ? styles.categoryLabelActive
-                    : styles.categoryLabel
+                    ? styles.categoryItemActive
+                    : styles.categoryItem
                 }>
-                {item}
-              </Text>
-            </View>
-          </TouchableOpacity>
-        ))}
-      </View>
-
-      {/* Products */}
-      {!products.length ? (
-        <Text>Loading...</Text>
-      ) : (
-        <View style={styles.productsGrid}>
-          {products.map(item => (
-            <CardProductComponent
-              key={item.id}
-              name={item.name}
-              price={item.price}
-            />
+                <Text
+                  key={item}
+                  style={
+                    item === category
+                      ? styles.categoryLabelActive
+                      : styles.categoryLabel
+                  }>
+                  {item}
+                </Text>
+              </View>
+            </TouchableOpacity>
           ))}
         </View>
-      )}
+
+        {/* Products */}
+        {!products.length ? (
+          <Text>Loading...</Text>
+        ) : (
+          <View style={styles.productsGrid}>
+            {products.map(item => (
+              <CardProductComponent
+                key={item.id}
+                name={item.name}
+                price={item.price}
+                id={item.id}
+              />
+            ))}
+          </View>
+        )}
+      </View>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {margin: 15},
-  header: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'relative',
-    marginBottom: 16,
-  },
-  buttonBack: {
-    position: 'absolute',
-    left: 0,
-  },
-  titleMenu: {
-    fontSize: 18,
-    fontWeight: '600',
+  container: {
+    padding: 15,
   },
   productsGrid: {
     display: 'flex',

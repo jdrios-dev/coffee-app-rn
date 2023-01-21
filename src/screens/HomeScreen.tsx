@@ -1,6 +1,6 @@
 import React from 'react';
 //import {useNavigation} from '@react-navigation/native';
-import {ScrollView, SafeAreaView} from 'react-native';
+import {SafeAreaView, ScrollView} from 'react-native';
 import CarouselComponent from '../components/Carousel.component';
 import CategoriesContainerComponent from '../components/CategoriesContainer.component';
 import HomeHeaderComponent from '../components/HomeHeader.component';

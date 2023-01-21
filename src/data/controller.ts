@@ -4,12 +4,12 @@ const getProductosByCategory = (category: Category): Product[] => {
   return items;
 };
 
-const getProductById = (id: string): Product | string => {
+const getProductById = (id: string): Product => {
   const product = products.find(item => item.id === id);
-  if (!product) {
-    return 'We are sorry, We dont have that product yet.';
+  if (product) {
+    return product;
   }
-  return product;
+  return products[0];
 };
 
 export {getProductosByCategory, getProductById};
