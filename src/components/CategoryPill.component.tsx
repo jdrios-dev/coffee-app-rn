@@ -1,22 +1,26 @@
 import React from 'react';
-import {View, Text, Image, StyleSheet} from 'react-native';
+import {TouchableOpacity, Text, Image, StyleSheet} from 'react-native';
 import {Product} from '../data';
 import colors from '../styles/colors';
+import {useNavigation} from '@react-navigation/native';
 
 type CategoryPillProps = {
   product: Product;
 };
 
 function CategoryPillComponent({product}: CategoryPillProps) {
+  const navigation = useNavigation();
   const {name} = product;
   return (
-    <View style={styles.pillContainer}>
+    <TouchableOpacity
+      style={styles.pillContainer}
+      onPress={() => navigation.navigate('DetailScreen', {id: product.id})}>
       <Image
         style={styles.img}
         source={{uri: 'https://icons8.com/icon/K-6n6MuHwv13/coffee-to-go'}}
       />
       <Text>{name}</Text>
-    </View>
+    </TouchableOpacity>
   );
 }
 

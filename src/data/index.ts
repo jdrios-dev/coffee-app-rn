@@ -40,7 +40,7 @@ const products: Product[] = [
     image: 'salad-bg.png',
     description:
       'lorem iNostrud eiusmod velit ut veniam ipsum veniam adipisicing culpa non ut consectetur.',
-    price: 12.95,
+    price: 10.05,
     sizes: ['middle'],
     stock: 10,
   },
@@ -52,7 +52,7 @@ const products: Product[] = [
     image: 'salad-bg.png',
     description:
       'lorem iNostrud eiusmod velit ut veniam ipsum veniam adipisicing culpa non ut consectetur.',
-    price: 8.15,
+    price: 11.25,
     sizes: ['middle', 'large'],
     stock: 7,
   },
@@ -64,7 +64,7 @@ const products: Product[] = [
     image: 'salad-bg.png',
     description:
       'lorem iNostrud eiusmod velit ut veniam ipsum veniam adipisicing culpa non ut consectetur.',
-    price: 10.5,
+    price: 5.49,
     sizes: ['middle', 'large'],
     stock: 15,
   },
@@ -76,7 +76,7 @@ const products: Product[] = [
     image: 'salad-bg.png',
     description:
       'lorem iNostrud eiusmod velit ut veniam ipsum veniam adipisicing culpa non ut consectetur.',
-    price: 4.0,
+    price: 7.07,
     sizes: ['basic', 'middle', 'large'],
     stock: 5,
   },
