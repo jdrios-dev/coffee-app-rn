@@ -1,4 +1,12 @@
 export type Category = 'food' | 'drink';
+export type Toppings =
+  | 'boba'
+  | 'almond'
+  | 'cheese'
+  | 'ice'
+  | 'chips'
+  | 'peper'
+  | 'fruits';
 export type Sizes = 'basic' | 'middle' | 'large';
 export type Product = {
   id: string;
@@ -13,6 +21,15 @@ export type Product = {
 };
 
 const categories: Category[] = ['food', 'drink'];
+export const toppings: Toppings[] = [
+  'boba',
+  'almond',
+  'cheese',
+  'ice',
+  'chips',
+  'peper',
+  'fruits',
+];
 
 const products: Product[] = [
   {

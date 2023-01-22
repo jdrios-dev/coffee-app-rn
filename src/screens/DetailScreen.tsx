@@ -1,13 +1,16 @@
 import React, {useState} from 'react';
-import {SafeAreaView, StyleSheet, Text, View, Modal, Alert} from 'react-native';
+import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import OrderModalComponent from '../components/OrderModal.component';
 import ScreenHeaderBackComponent from '../components/ScreenHeaderBack.component';
-import {Product} from '../data';
+import {Product, Sizes, Toppings} from '../data';
 import {getProductById} from '../data/controller';
 import colors from '../styles/colors';
 
 const DetailScreen = ({route}) => {
   const [modalVisible, setModalVisible] = useState(false);
+  const [sizeSelected, setSizeSelected] = useState<Sizes | null>(null);
+  const [toppingSelected, setToppingSelected] = useState<Toppings | null>(null);
   const {id} = route.params;
   const product: Product = getProductById(id);
   return (
@@ -30,27 +33,15 @@ const DetailScreen = ({route}) => {
           <Text style={styles.buttonAddBagText}>Add to bag</Text>
         </TouchableOpacity>
 
-        <Modal
-          animationType="slide"
-          transparent={true}
-          visible={modalVisible}
-          onRequestClose={() => {
-            setModalVisible(!modalVisible);
-          }}>
-          <View style={styles.spacer} />
-          <View
-          //style={styles.centeredView}
-          >
-            <View style={styles.modalView}>
-              <Text style={styles.modalTitle}>Drink Size</Text>
-              <TouchableOpacity
-                style={[styles.buttonAddBag]}
-                onPress={() => setModalVisible(!modalVisible)}>
-                <Text style={styles.buttonAddBagText}>Hide Modal</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </Modal>
+        <OrderModalComponent
+          modalVisible={modalVisible}
+          setModalVisible={setModalVisible}
+          sizeSelected={sizeSelected}
+          setSizeSelected={setSizeSelected}
+          sizes={product.sizes}
+          toppingSelected={toppingSelected}
+          setToppingSelected={setToppingSelected}
+        />
       </View>
     </SafeAreaView>
   );
@@ -69,7 +60,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginBottom: 16,
   },
-  description: {marginBottom: 16},
+  description: {marginBottom: 16, color: colors.textClear},
   buttonAddBag: {
     backgroundColor: colors.secondary,
     paddingVertical: 10,
@@ -81,19 +72,6 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     fontSize: 16,
   },
-  modalView: {
-    marginTop: 'auto',
-    backgroundColor: colors.primaryLigth,
-    borderRadius: 20,
-    padding: 35,
-    alignItems: 'center',
-    shadowColor: '#000',
-  },
-  modalTitle: {
-    fontSize: 16,
-    fontWeight: '600',
-  },
-  spacer: {flex: 1},
 });
 
 export default DetailScreen;

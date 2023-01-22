@@ -1,13 +1,23 @@
-import {View, Text, StyleSheet, Button} from 'react-native';
+import {View, Text, StyleSheet, Image} from 'react-native';
 import React from 'react';
 import {useNavigation} from '@react-navigation/native';
+import {CircularButton} from './ModalCounter.component';
 
-const ScreenHeaderBackComponent = ({title}) => {
+type ScreenHeaderBackProps = {
+  title: string;
+};
+
+const ScreenHeaderBackComponent = ({title}: ScreenHeaderBackProps) => {
   const navigation = useNavigation();
   return (
     <View style={styles.header}>
       <View style={styles.buttonBack}>
-        <Button title="X" onPress={() => navigation.pop()} />
+        <CircularButton onPress={() => navigation.pop()}>
+          <Image
+            style={styles.img}
+            source={require('../assets/IconArrow.png')}
+          />
+        </CircularButton>
       </View>
       <Text style={styles.titleMenu}>{title}</Text>
     </View>
@@ -31,6 +41,11 @@ const styles = StyleSheet.create({
   titleMenu: {
     fontSize: 18,
     fontWeight: '600',
+  },
+  img: {
+    width: 30,
+    resizeMode: 'contain',
+    flex: 1,
   },
 });
 
