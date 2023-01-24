@@ -37,7 +37,7 @@ const products: Product[] = [
     category: 'food',
     name: 'Salad',
     icon: 'salad.svg',
-    image: 'salad-bg.png',
+    image: '../assets/images/food-1.png',
     description:
       'lorem iNostrud eiusmod velit ut veniam ipsum veniam adipisicing culpa non ut consectetur.',
     price: 10.05,
@@ -49,7 +49,7 @@ const products: Product[] = [
     category: 'food',
     name: 'Signature',
     icon: 'salad.svg',
-    image: 'salad-bg.png',
+    image: '../assets/images/food-2.png',
     description:
       'lorem iNostrud eiusmod velit ut veniam ipsum veniam adipisicing culpa non ut consectetur.',
     price: 11.25,
@@ -61,7 +61,7 @@ const products: Product[] = [
     category: 'food',
     name: 'Bakery',
     icon: 'salad.svg',
-    image: 'salad-bg.png',
+    image: '../assets/images/food-3.png',
     description:
       'lorem iNostrud eiusmod velit ut veniam ipsum veniam adipisicing culpa non ut consectetur.',
     price: 5.49,
@@ -73,7 +73,7 @@ const products: Product[] = [
     category: 'food',
     name: 'Yogurth',
     icon: 'salad.svg',
-    image: 'salad-bg.png',
+    image: '../assets/images/food-4.png',
     description:
       'lorem iNostrud eiusmod velit ut veniam ipsum veniam adipisicing culpa non ut consectetur.',
     price: 7.07,
@@ -87,7 +87,7 @@ const products: Product[] = [
     category: 'drink',
     name: 'Signature',
     icon: 'salad.svg',
-    image: 'salad-bg.png',
+    image: '../assets/images/coffee-1.png',
     description:
       'lorem iNostrud eiusmod velit ut veniam ipsum veniam adipisicing culpa non ut consectetur.',
     price: 12.95,
@@ -99,7 +99,7 @@ const products: Product[] = [
     category: 'drink',
     name: 'Iced Coffee',
     icon: 'salad.svg',
-    image: 'salad-bg.png',
+    image: '../assets/images/coffee-2.png',
     description:
       'lorem iNostrud eiusmod velit ut veniam ipsum veniam adipisicing culpa non ut consectetur.',
     price: 8.15,
@@ -111,7 +111,7 @@ const products: Product[] = [
     category: 'drink',
     name: 'Hot Coffee',
     icon: 'salad.svg',
-    image: 'salad-bg.png',
+    image: '../assets/images/coffee-3.png',
     description:
       'lorem iNostrud eiusmod velit ut veniam ipsum veniam adipisicing culpa non ut consectetur.',
     price: 10.5,
@@ -123,7 +123,7 @@ const products: Product[] = [
     category: 'drink',
     name: 'Chocolate',
     icon: 'salad.svg',
-    image: 'salad-bg.png',
+    image: '../assets/images/coffee-4.png',
     description:
       'lorem iNostrud eiusmod velit ut veniam ipsum veniam adipisicing culpa non ut consectetur.',
     price: 4.0,
