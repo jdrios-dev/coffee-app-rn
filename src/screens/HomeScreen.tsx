@@ -5,10 +5,10 @@ import CarouselComponent from '../components/Carousel.component';
 import CategoriesContainerComponent from '../components/CategoriesContainer.component';
 import HomeHeaderComponent from '../components/HomeHeader.component';
 import {categories} from '../data';
+import CartComponent from '../components/Cart.component';
 
 const HomeScreen = () => {
   // const navigation = useNavigation();
-
   return (
     <SafeAreaView>
       <ScrollView
@@ -23,6 +23,7 @@ const HomeScreen = () => {
         {categories.map(item => (
           <CategoriesContainerComponent key={item} category={item} />
         ))}
+        <CartComponent />
       </ScrollView>
     </SafeAreaView>
   );

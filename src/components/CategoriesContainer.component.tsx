@@ -1,4 +1,4 @@
-import {View, Text, StyleSheet, Button} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import React from 'react';
 import CategoryPillComponent from './CategoryPill.component';
 import colors from '../styles/colors';
@@ -18,14 +18,14 @@ const CategoriesContainerComponent = ({category}: CategoryContainerProps) => {
     <View>
       <View style={[styles.header, styles.headerContainer]}>
         <Text style={styles.categoryTitle}>{category}</Text>
-        <Button
-          title="View all"
+        <TouchableOpacity
           onPress={() =>
             navigation.navigate('CategoryScreen', {
               category: category,
             })
-          }
-        />
+          }>
+          <Text style={styles.categoryButton}>View all</Text>
+        </TouchableOpacity>
       </View>
       <View style={styles.categoriesContainer}>
         {products.map(item => (

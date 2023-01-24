@@ -1,8 +1,10 @@
-import React, {useState} from 'react';
+import {useNavigation} from '@react-navigation/native';
+import React, {useState, useContext} from 'react';
 import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import OrderModalComponent from '../components/OrderModal.component';
 import ScreenHeaderBackComponent from '../components/ScreenHeaderBack.component';
+import {CartContext} from '../context';
 import {Product, Sizes, Toppings} from '../data';
 import {getProductById} from '../data/controller';
 import colors from '../styles/colors';
@@ -10,9 +12,25 @@ import colors from '../styles/colors';
 const DetailScreen = ({route}) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [sizeSelected, setSizeSelected] = useState<Sizes | null>(null);
+  const [additionalText, setAdditionalText] = useState<string>('');
   const [toppingSelected, setToppingSelected] = useState<Toppings | null>(null);
+
+  const navigation = useNavigation();
+
   const {id} = route.params;
   const product: Product = getProductById(id);
+
+  const [state, dispatch] = useContext(CartContext);
+
+  const addToCart = async () => {
+    await dispatch({
+      type: 'ADD_PRODUCT',
+      payload: {product, sizeSelected, toppingSelected, additionalText},
+    });
+    setModalVisible(false);
+    navigation.navigate('HomeScreen', {});
+  };
+
   return (
     <SafeAreaView>
       <View
@@ -41,6 +59,9 @@ const DetailScreen = ({route}) => {
           sizes={product.sizes}
           toppingSelected={toppingSelected}
           setToppingSelected={setToppingSelected}
+          additionalText={additionalText}
+          setAdditionalText={setAdditionalText}
+          addToCart={addToCart}
         />
       </View>
     </SafeAreaView>
