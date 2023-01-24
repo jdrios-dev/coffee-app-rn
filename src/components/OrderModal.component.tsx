@@ -2,7 +2,7 @@ import {View, Text, Modal, TouchableOpacity, StyleSheet} from 'react-native';
 import React from 'react';
 import colors from '../styles/colors';
 import {Sizes as SizesType, Toppings as ToppingsType, toppings} from '../data';
-import {ScrollView, TextInput} from 'react-native-gesture-handler';
+import {ScrollView} from 'react-native-gesture-handler';
 import ModalCounterComponent from './ModalCounter.component';
 
 type OrderModalProps = {
@@ -13,9 +13,6 @@ type OrderModalProps = {
   toppingSelected: ToppingsType | null;
   setToppingSelected: (topping: ToppingsType) => void;
   sizes: SizesType[];
-  additionalText: string | null;
-  setAdditionalText: (text: string) => void;
-  addToCart: () => void;
 };
 
 const OrderModalComponent = ({
@@ -26,9 +23,6 @@ const OrderModalComponent = ({
   toppingSelected,
   setToppingSelected,
   sizes,
-  additionalText,
-  setAdditionalText,
-  addToCart,
 }: OrderModalProps) => {
   return (
     <Modal
@@ -102,16 +96,7 @@ const OrderModalComponent = ({
             ))}
           </ScrollView>
 
-          <Text style={styles.modalTitle}>Additional Req</Text>
-          <TextInput
-            value={additionalText}
-            style={styles.extraReqContainer}
-            onChange={e => {
-              setAdditionalText(e.target.value);
-            }}
-          />
-
-          <ModalCounterComponent addToCart={addToCart} />
+          <ModalCounterComponent />
         </View>
       </View>
     </Modal>
@@ -124,7 +109,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primaryLigth,
     borderRadius: 20,
     paddingVertical: 35,
-    paddingBottom: '50%',
+    paddingBottom: 80,
     alignItems: 'center',
     shadowColor: '#000',
   },
@@ -187,12 +172,6 @@ const styles = StyleSheet.create({
     width: '100%',
     paddingVertical: 10,
     marginBottom: 15,
-  },
-  extraReqContainer: {
-    width: '100%',
-    paddingVertical: 10,
-    marginBottom: 15,
-    backgroundColor: colors.white,
   },
 });
 
