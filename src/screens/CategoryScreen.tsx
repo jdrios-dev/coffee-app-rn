@@ -63,7 +63,6 @@ const CategoryScreen = ({route, navigation}) => {
                 key={item.id}
                 name={item.name}
                 price={item.price}
-                image={item.image}
                 id={item.id}
               />
             ))}

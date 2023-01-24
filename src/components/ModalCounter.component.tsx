@@ -14,7 +14,11 @@ export const CircularButton = ({children, onPress}: CircularButtonProps) => (
   </TouchableOpacity>
 );
 
-const ModalCounterComponent = () => {
+type ModalCounterComponentProps = {
+  addToCart: () => void;
+};
+
+const ModalCounterComponent = ({addToCart}: ModalCounterComponentProps) => {
   const [counter, setCounter] = useState<number>(1);
 
   return (
@@ -30,7 +34,9 @@ const ModalCounterComponent = () => {
       </View>
       <ButtonUIComponent
         title="Add to bag: $ 2.95"
-        onPress={() => console.log('Place Order! done')}
+        onPress={() => {
+          addToCart();
+        }}
       />
     </View>
   );

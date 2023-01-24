@@ -11,7 +11,6 @@ export type Sizes = 'basic' | 'middle' | 'large';
 export type Product = {
   id: string;
   category: Category;
-  longName: string;
   name: string;
   icon: string;
   image: string;
@@ -36,12 +35,11 @@ const products: Product[] = [
   {
     id: 'ABC-123',
     category: 'food',
-    longName: 'The Classic Chocolate Cake',
-    name: 'Chocolate Cake',
+    name: 'Salad',
     icon: 'salad.svg',
-    image: require('../assets/images/food-1.png'),
+    image: 'salad-bg.png',
     description:
-      'A moist and fluffy chocolate cake, layered with rich chocolate ganache and finished with a smooth chocolate frosting. Perfect for chocolate lovers.',
+      'lorem iNostrud eiusmod velit ut veniam ipsum veniam adipisicing culpa non ut consectetur.',
     price: 10.05,
     sizes: ['middle'],
     stock: 10,
@@ -49,12 +47,11 @@ const products: Product[] = [
   {
     id: 'ABC-124',
     category: 'food',
-    longName: 'The Red Velvet Cake',
-    name: 'Velvet Cake',
+    name: 'Signature',
     icon: 'salad.svg',
-    image: require('../assets/images/food-2.png'),
+    image: 'salad-bg.png',
     description:
-      'A classic southern treat, this red velvet cake is moist and fluffy, with a delicate cream cheese frosting. Perfect for special occasions.',
+      'lorem iNostrud eiusmod velit ut veniam ipsum veniam adipisicing culpa non ut consectetur.',
     price: 11.25,
     sizes: ['middle', 'large'],
     stock: 7,
@@ -62,12 +59,11 @@ const products: Product[] = [
   {
     id: 'ABC-125',
     category: 'food',
-    longName: 'The Lemon Cake',
-    name: 'Lemon Cake',
+    name: 'Bakery',
     icon: 'salad.svg',
-    image: require('../assets/images/food-3.png'),
+    image: 'salad-bg.png',
     description:
-      'A tangy and refreshing lemon cake, with a light lemon curd filling and a zesty lemon buttercream frosting. Perfect for a summer gathering.',
+      'lorem iNostrud eiusmod velit ut veniam ipsum veniam adipisicing culpa non ut consectetur.',
     price: 5.49,
     sizes: ['middle', 'large'],
     stock: 15,
@@ -75,12 +71,11 @@ const products: Product[] = [
   {
     id: 'ABC-126',
     category: 'food',
-    longName: 'The Carrot Cake',
-    name: 'Carrot Cake',
+    name: 'Yogurth',
     icon: 'salad.svg',
-    image: require('../assets/images/food-4.png'),
+    image: 'salad-bg.png',
     description:
-      'A moist and flavorful carrot cake, made with fresh grated carrots and a blend of spices, topped with a rich cream cheese frosting. Perfect for a comforting treat.',
+      'lorem iNostrud eiusmod velit ut veniam ipsum veniam adipisicing culpa non ut consectetur.',
     price: 7.07,
     sizes: ['basic', 'middle', 'large'],
     stock: 5,
@@ -90,12 +85,11 @@ const products: Product[] = [
   {
     id: 'ABD-123',
     category: 'drink',
-    longName: 'The Classic Latte',
-    name: 'Latte',
+    name: 'Signature',
     icon: 'salad.svg',
-    image: require('../assets/images/coffee-1.png'),
+    image: 'salad-bg.png',
     description:
-      'A smooth and creamy blend of espresso and steamed milk, topped with a delicate layer of foam. Perfect for those who prefer a traditional coffee experience..',
+      'lorem iNostrud eiusmod velit ut veniam ipsum veniam adipisicing culpa non ut consectetur.',
     price: 12.95,
     sizes: ['middle'],
     stock: 10,
@@ -103,12 +97,11 @@ const products: Product[] = [
   {
     id: 'ABD-124',
     category: 'drink',
-    longName: 'The Mocha',
-    name: 'Mocha',
+    name: 'Iced Coffee',
     icon: 'salad.svg',
-    image: require('../assets/images/coffee-2.png'),
+    image: 'salad-bg.png',
     description:
-      "A rich and decadent combination of espresso, chocolate syrup, and steamed milk, topped with whipped cream and a sprinkle of cocoa powder. A chocolate lover's dream come true.",
+      'lorem iNostrud eiusmod velit ut veniam ipsum veniam adipisicing culpa non ut consectetur.',
     price: 8.15,
     sizes: ['middle', 'large'],
     stock: 7,
@@ -116,12 +109,11 @@ const products: Product[] = [
   {
     id: 'ABD-125',
     category: 'drink',
-    longName: 'The Caramel Macchiato',
-    name: 'Macchiato',
+    name: 'Hot Coffee',
     icon: 'salad.svg',
-    image: require('../assets/images/coffee-3.png'),
+    image: 'salad-bg.png',
     description:
-      'A delicious twist on the classic latte, featuring a shot of espresso poured over steamed milk and a drizzle of caramel syrup. A sweet and satisfying treat.',
+      'lorem iNostrud eiusmod velit ut veniam ipsum veniam adipisicing culpa non ut consectetur.',
     price: 10.5,
     sizes: ['middle', 'large'],
     stock: 15,
@@ -129,12 +121,11 @@ const products: Product[] = [
   {
     id: 'ABD-126',
     category: 'drink',
-    longName: 'The Cold Brew',
-    name: 'Brew',
+    name: 'Chocolate',
     icon: 'salad.svg',
-    image: require('../assets/images/coffee-4.png'),
+    image: 'salad-bg.png',
     description:
-      'A refreshing and energizing coffee made by steeping coarsely ground beans in cold water for an extended period of time. Perfect for a hot summer day.',
+      'lorem iNostrud eiusmod velit ut veniam ipsum veniam adipisicing culpa non ut consectetur.',
     price: 4.0,
     sizes: ['basic', 'middle', 'large'],
     stock: 5,

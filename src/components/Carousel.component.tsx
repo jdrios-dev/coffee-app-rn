@@ -12,7 +12,7 @@ const CarouselComponent = () => {
 
 const styles = StyleSheet.create({
   carousel: {
-    backgroundColor: colors.primary,
+    backgroundColor: colors.secondary,
     height: 250,
     borderRadius: 10,
     marginBottom: 24,
