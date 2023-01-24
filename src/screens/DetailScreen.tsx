@@ -20,7 +20,7 @@ const DetailScreen = ({route}) => {
   const {id} = route.params;
   const product: Product = getProductById(id);
 
-  const [state, dispatch] = useContext(CartContext);
+  const {dispatch} = useContext(CartContext);
 
   const addToCart = async () => {
     await dispatch({

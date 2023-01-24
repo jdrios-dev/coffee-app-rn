@@ -4,8 +4,7 @@ import {CartContext} from '../context';
 import colors from '../styles/colors';
 
 const CartComponent = () => {
-  const [state, _] = useContext(CartContext);
-  console.log(require('../assets/IconArrow.png'));
+  const {state} = useContext(CartContext);
   return state.size > 0 ? (
     <TouchableOpacity style={styles.container}>
       <Image style={styles.img} source={require('../assets/BasketIcon.png')} />

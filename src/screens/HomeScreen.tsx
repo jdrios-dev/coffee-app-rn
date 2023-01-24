@@ -23,6 +23,7 @@ const HomeScreen = () => {
         {categories.map(item => (
           <CategoriesContainerComponent key={item} category={item} />
         ))}
+
         <CartComponent />
       </ScrollView>
     </SafeAreaView>
