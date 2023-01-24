@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import {Image, SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import OrderModalComponent from '../components/OrderModal.component';
 import ScreenHeaderBackComponent from '../components/ScreenHeaderBack.component';
@@ -23,8 +23,10 @@ const DetailScreen = ({route}) => {
         }}>
         <ScreenHeaderBackComponent title="Detail" />
 
-        <View style={styles.image} />
-        <Text style={styles.title}>{product.name}</Text>
+        <View style={styles.imageCont}>
+          <Image style={styles.image} source={product.image} />
+        </View>
+        <Text style={styles.title}>{product.longName}</Text>
         <Text style={styles.description}>{product.description}</Text>
 
         <TouchableOpacity
@@ -48,12 +50,17 @@ const DetailScreen = ({route}) => {
 };
 
 const styles = StyleSheet.create({
-  image: {
+  imageCont: {
     backgroundColor: colors.primaryLigth,
     width: 130,
     height: 190,
     borderRadius: 10,
     marginBottom: 16,
+  },
+  image: {
+    width: 'auto',
+    height: '100%',
+    borderRadius: 10,
   },
   title: {
     fontWeight: '600',

@@ -15,10 +15,7 @@ function CategoryPillComponent({product}: CategoryPillProps) {
     <TouchableOpacity
       style={styles.pillContainer}
       onPress={() => navigation.navigate('DetailScreen', {id: product.id})}>
-      <Image
-        style={styles.img}
-        source={{uri: 'https://icons8.com/icon/K-6n6MuHwv13/coffee-to-go'}}
-      />
+      <Image style={styles.img} source={product.image} />
       <Text>{name}</Text>
     </TouchableOpacity>
   );

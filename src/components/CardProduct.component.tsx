@@ -12,14 +12,12 @@ type CardProductProps = {
 
 const CardProductComponent = ({name, price, image, id}: CardProductProps) => {
   const navigation = useNavigation();
+
   return (
     <TouchableOpacity
       style={styles.card}
       onPress={() => navigation.navigate('DetailScreen', {id: id})}>
-      <Image
-        source={require('../assets/images/coffee-1.png')}
-        style={styles.image}
-      />
+      <Image source={image} style={styles.image} />
       <Text style={styles.cardName}>{name}</Text>
       <View style={styles.cardPriceChip}>
         <Text style={styles.cardPrice}>$ {price}</Text>
@@ -59,9 +57,10 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
   },
   image: {
-    width: '100%',
+    borderRadius: 10,
+    width: 'auto',
     height: '100%',
-    resizeMode: 'contain',
+    resizeMode: 'cover',
   },
 });
 
