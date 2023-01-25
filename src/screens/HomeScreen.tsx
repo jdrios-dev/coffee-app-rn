@@ -9,6 +9,7 @@ import CartComponent from '../components/Cart.component';
 
 const HomeScreen = () => {
   // const navigation = useNavigation();
+
   return (
     <SafeAreaView>
       <ScrollView

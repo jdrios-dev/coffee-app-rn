@@ -12,4 +12,9 @@ const getProductById = (id: string): Product => {
   return products[0];
 };
 
-export {getProductosByCategory, getProductById};
+const getFavoriteProducts = () => {
+  const items = products.filter(item => item.isFavorite);
+  return items;
+};
+
+export {getProductosByCategory, getProductById, getFavoriteProducts};

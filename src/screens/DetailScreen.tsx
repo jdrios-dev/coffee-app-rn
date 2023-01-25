@@ -1,6 +1,6 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useState, useContext} from 'react';
-import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import {Image, SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import OrderModalComponent from '../components/OrderModal.component';
 import ScreenHeaderBackComponent from '../components/ScreenHeaderBack.component';
@@ -41,8 +41,9 @@ const DetailScreen = ({route}) => {
         }}>
         <ScreenHeaderBackComponent title="Detail" />
 
-        <View style={styles.image} />
-        <Text style={styles.title}>{product.name}</Text>
+        <Image style={styles.image} source={product.image} />
+
+        <Text style={styles.title}>{product.longName}</Text>
         <Text style={styles.description}>{product.description}</Text>
 
         <TouchableOpacity
