@@ -1,14 +1,17 @@
-import {View, StyleSheet, Image} from 'react-native';
+import {View, StyleSheet, Image, Text} from 'react-native';
 import React, {useState} from 'react';
 import colors from '../styles/colors';
 import {getFavoriteProducts} from '../data/controller';
 
+const MILLISECONDS_TO_CHANGE = 3800;
+
 const CarouselComponent = () => {
   const [activeProduct, setActiveProduct] = useState(0);
   const favoriteProducts = getFavoriteProducts();
-  const MAX_ITEMS = favoriteProducts.length;
-  const MILLISECONDS_TO_CHANGE = 3800;
+  const MAX_ITEMS = favoriteProducts?.length;
+
   setTimeout(() => {
+    // MAX_ITEMS - 1 = The last product in my array
     if (activeProduct === MAX_ITEMS - 1) {
       return setActiveProduct(0);
     }
@@ -36,6 +39,9 @@ const CarouselComponent = () => {
           />
         ))}
       </View>
+      <Text style={styles.title}>
+        {favoriteProducts[activeProduct].longName}
+      </Text>
     </View>
   );
 };
@@ -66,6 +72,18 @@ const styles = StyleSheet.create({
     opacity: 0.5,
     height: 5,
     borderRadius: 5,
+  },
+  title: {
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
+    fontSize: 24,
+    fontWeight: '600',
+    color: colors.white,
+    textShadowColor: 'rgba(0, 0, 0, 0.6)',
+    textShadowOffset: {width: 0, height: 5},
+    textShadowRadius: 7,
+    padding: 10,
   },
 });
 
