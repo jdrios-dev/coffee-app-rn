@@ -1,4 +1,4 @@
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import React from 'react';
 import colors from '../styles/colors';
 import {useNavigation} from '@react-navigation/native';
@@ -6,15 +6,18 @@ import {useNavigation} from '@react-navigation/native';
 type CardProductProps = {
   name: string;
   price: number;
+  image: string;
   id: string;
 };
 
-const CardProductComponent = ({name, price, id}: CardProductProps) => {
+const CardProductComponent = ({name, price, image, id}: CardProductProps) => {
   const navigation = useNavigation();
+
   return (
     <TouchableOpacity
       style={styles.card}
       onPress={() => navigation.navigate('DetailScreen', {id: id})}>
+      <Image source={image} style={styles.image} />
       <Text style={styles.cardName}>{name}</Text>
       <View style={styles.cardPriceChip}>
         <Text style={styles.cardPrice}>$ {price}</Text>
@@ -31,7 +34,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginBottom: 6,
     marginHorizontal: 3,
-    padding: 10,
     position: 'relative',
   },
   cardName: {
@@ -53,6 +55,12 @@ const styles = StyleSheet.create({
     width: 'auto',
     paddingHorizontal: 10,
     paddingVertical: 5,
+  },
+  image: {
+    borderRadius: 10,
+    width: 'auto',
+    height: '100%',
+    resizeMode: 'cover',
   },
 });
 
