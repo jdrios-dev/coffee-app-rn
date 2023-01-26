@@ -1,12 +1,18 @@
 import React, {useContext} from 'react';
+import {useNavigation} from '@react-navigation/native';
 import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
 import {CartContext} from '../context';
 import colors from '../styles/colors';
 
 const CartComponent = () => {
   const {state} = useContext(CartContext);
+  const navigation = useNavigation();
   return state.size > 0 ? (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={() => {
+        navigation.navigate('CartScreen', {});
+      }}>
       <Image style={styles.img} source={require('../assets/BasketIcon.png')} />
       <View style={styles.labelBackground}>
         <Text style={styles.label}>{state.size}</Text>

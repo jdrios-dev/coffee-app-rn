@@ -1,35 +1,28 @@
 import {View, Text, Modal, TouchableOpacity, StyleSheet} from 'react-native';
 import React from 'react';
 import colors from '../styles/colors';
-import {Sizes as SizesType, Toppings as ToppingsType, toppings} from '../data';
+import {Sizes, Topping, toppings} from '../data';
 import {ScrollView, TextInput} from 'react-native-gesture-handler';
 import ModalCounterComponent from './ModalCounter.component';
+import {Order} from '../context';
 
 type OrderModalProps = {
   modalVisible: boolean;
   setModalVisible: (item: boolean) => void;
-  sizeSelected: SizesType | null;
-  setSizeSelected: (size: SizesType) => void;
-  toppingSelected: ToppingsType | null;
-  setToppingSelected: (topping: ToppingsType) => void;
-  sizes: SizesType[];
-  additionalText: string | null;
-  setAdditionalText: (text: string) => void;
+  order: Order;
+  handleOrderChange: (fieldToUpdate: any) => void;
   addToCart: () => void;
 };
 
 const OrderModalComponent = ({
   modalVisible,
   setModalVisible,
-  sizeSelected,
-  setSizeSelected,
-  toppingSelected,
-  setToppingSelected,
-  sizes,
-  additionalText,
-  setAdditionalText,
+  order,
+  handleOrderChange,
   addToCart,
 }: OrderModalProps) => {
+  const isSelected = (item: Topping) =>
+    order.toppings?.find((topping: Topping) => topping.id === item.id);
   return (
     <Modal
       animationType="slide"
@@ -50,19 +43,19 @@ const OrderModalComponent = ({
           {/* Sizes */}
           <Text style={styles.modalTitle}>Drink Size</Text>
           <View style={styles.sizesContaner}>
-            {sizes.map(item => (
+            {order.product.sizes.map((item: Sizes) => (
               <TouchableOpacity
                 key={item}
-                onPress={() => setSizeSelected(item)}>
+                onPress={() => handleOrderChange({size: item})}>
                 <View
                   style={
-                    sizeSelected === item
+                    order?.size === item
                       ? styles.sizesItemActive
                       : styles.sizesItem
                   }>
                   <Text
                     style={
-                      sizeSelected === item
+                      order?.size === item
                         ? styles.sizesItemLabelActive
                         : styles.sizesItemLabel
                     }>
@@ -79,23 +72,27 @@ const OrderModalComponent = ({
             style={styles.toppingsContainer}
             horizontal={true}
             showsHorizontalScrollIndicator={false}>
-            {toppings.map(item => (
+            {toppings.map((item: Topping) => (
               <TouchableOpacity
-                key={item}
-                onPress={() => setToppingSelected(item)}>
+                key={item.id}
+                onPress={() =>
+                  handleOrderChange({
+                    toppings: item,
+                  })
+                }>
                 <View
                   style={
-                    toppingSelected === item
+                    isSelected(item)
                       ? styles.toppingItemActive
                       : styles.toppingItem
                   }>
                   <Text
                     style={
-                      toppingSelected === item
+                      isSelected(item)
                         ? styles.sizesItemLabelActive
                         : styles.sizesItemLabel
                     }>
-                    {item}
+                    {item.name}
                   </Text>
                 </View>
               </TouchableOpacity>
@@ -104,14 +101,18 @@ const OrderModalComponent = ({
 
           <Text style={styles.modalTitle}>Additional Req</Text>
           <TextInput
-            value={additionalText}
-            style={styles.extraReqContainer}
-            onChange={e => {
-              setAdditionalText(e.target.value);
+            value={order.note}
+            style={styles.noteContainer}
+            onChangeText={value => {
+              handleOrderChange({note: value});
             }}
           />
 
-          <ModalCounterComponent addToCart={addToCart} />
+          <ModalCounterComponent
+            addToCart={addToCart}
+            order={order}
+            handleOrderChange={handleOrderChange}
+          />
         </View>
       </View>
     </Modal>
@@ -188,7 +189,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     marginBottom: 15,
   },
-  extraReqContainer: {
+  noteContainer: {
     width: '100%',
     paddingVertical: 10,
     marginBottom: 15,

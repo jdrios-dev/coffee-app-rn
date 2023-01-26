@@ -1,7 +1,8 @@
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
-import React, {ReactElement, useState} from 'react';
+import React, {ReactElement} from 'react';
 import colors from '../styles/colors';
 import ButtonUIComponent from './ButtonUI.component';
+import {Order} from '../context';
 
 type CircularButtonProps = {
   children: ReactElement;
@@ -16,24 +17,32 @@ export const CircularButton = ({children, onPress}: CircularButtonProps) => (
 
 type ModalCounterComponentProps = {
   addToCart: () => void;
+  order: Order;
+  handleOrderChange: (fieldToUpdate: any) => void;
 };
 
-const ModalCounterComponent = ({addToCart}: ModalCounterComponentProps) => {
-  const [counter, setCounter] = useState<number>(1);
-
+const ModalCounterComponent = ({
+  addToCart,
+  order,
+  handleOrderChange,
+}: ModalCounterComponentProps) => {
   return (
     <View style={styles.container}>
       <View style={styles.btnContainer}>
-        <CircularButton onPress={() => setCounter(counter - 1)}>
+        <CircularButton
+          onPress={() => handleOrderChange({quantity: order.quantity - 1})}>
           <Text style={[styles.btnText, styles.btnTextBigger]}>-</Text>
         </CircularButton>
-        <Text style={[styles.btnText, styles.btnTextSpace]}>{counter}</Text>
-        <CircularButton onPress={() => setCounter(counter + 1)}>
+        <Text style={[styles.btnText, styles.btnTextSpace]}>
+          {order.quantity.toFixed(2)}
+        </Text>
+        <CircularButton
+          onPress={() => handleOrderChange({quantity: order.quantity + 1})}>
           <Text style={[styles.btnText, styles.btnTextBigger]}>+</Text>
         </CircularButton>
       </View>
       <ButtonUIComponent
-        title="Add to bag: $ 2.95"
+        title={`Add to bag: ${order.price * order.quantity}`}
         onPress={() => {
           addToCart();
         }}

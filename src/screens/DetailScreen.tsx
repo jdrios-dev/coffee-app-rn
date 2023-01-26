@@ -1,31 +1,77 @@
 import {useNavigation} from '@react-navigation/native';
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import {Image, SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import OrderModalComponent from '../components/OrderModal.component';
 import ScreenHeaderBackComponent from '../components/ScreenHeaderBack.component';
-import {CartContext} from '../context';
-import {Product, Sizes, Toppings} from '../data';
+import {CartContext, Order} from '../context';
+import {Product, Sizes, Topping} from '../data';
 import {getProductById} from '../data/controller';
 import colors from '../styles/colors';
 
 const DetailScreen = ({route}) => {
-  const [modalVisible, setModalVisible] = useState(false);
-  const [sizeSelected, setSizeSelected] = useState<Sizes | null>(null);
-  const [additionalText, setAdditionalText] = useState<string>('');
-  const [toppingSelected, setToppingSelected] = useState<Toppings | null>(null);
-
   const navigation = useNavigation();
-
+  const [modalVisible, setModalVisible] = useState(false);
+  const {state, dispatch} = useContext(CartContext);
   const {id} = route.params;
   const product: Product = getProductById(id);
+  const [order, setOrder] = useState<Order>({
+    id: `ìtem_${state.size}`,
+    product,
+    size: null,
+    toppings: [],
+    note: '',
+    quantity: 0,
+    price: 0,
+  });
 
-  const {dispatch} = useContext(CartContext);
+  useEffect(() => {
+    setOrder({
+      ...order,
+      price:
+        order.product.price +
+        order.toppings?.reduce((acc, cur) => acc + cur.price, 0),
+    });
+  }, [order]);
+
+  const handleStartOrder = () => {
+    setOrder({
+      ...order,
+      price: product.price,
+      quantity: 1,
+    });
+    setModalVisible(!modalVisible);
+  };
+
+  const handleOrderChange = (fieldToUpdate: any) => {
+    // if the fieldToUpdate is a topping, we will update the toppings array
+    if (fieldToUpdate.toppings) {
+      // check if the topping already exists in the order
+      const toppingExists = order.toppings?.find(
+        (topping: Topping) => topping.id === fieldToUpdate.toppings.id,
+      );
+      // if the topping exists, we will filter it out else we add it
+      setOrder({
+        ...order,
+        toppings: !toppingExists
+          ? [...order.toppings, fieldToUpdate.toppings]
+          : [...order.toppings].filter(
+              (topping: Topping) => topping.id !== fieldToUpdate.toppings.id,
+            ),
+      });
+    } else {
+      // if the fieldToUpdate is not a topping, we will update the order state
+      setOrder({
+        ...order,
+        ...fieldToUpdate,
+      });
+    }
+  };
 
   const addToCart = async () => {
     await dispatch({
-      type: 'ADD_PRODUCT',
-      payload: {product, sizeSelected, toppingSelected, additionalText},
+      type: 'ADD_ORDER_ITEM',
+      payload: order,
     });
     setModalVisible(false);
     navigation.navigate('HomeScreen', {});
@@ -41,27 +87,21 @@ const DetailScreen = ({route}) => {
         }}>
         <ScreenHeaderBackComponent title="Detail" />
 
-        <Image style={styles.image} source={product.image} />
-
-        <Text style={styles.title}>{product.longName}</Text>
+        <Image source={product.image} style={styles.image} />
+        <Text style={styles.title}>{product.name}</Text>
         <Text style={styles.description}>{product.description}</Text>
 
         <TouchableOpacity
           style={styles.buttonAddBag}
-          onPress={() => setModalVisible(!modalVisible)}>
+          onPress={handleStartOrder}>
           <Text style={styles.buttonAddBagText}>Add to bag</Text>
         </TouchableOpacity>
 
         <OrderModalComponent
           modalVisible={modalVisible}
           setModalVisible={setModalVisible}
-          sizeSelected={sizeSelected}
-          setSizeSelected={setSizeSelected}
-          sizes={product.sizes}
-          toppingSelected={toppingSelected}
-          setToppingSelected={setToppingSelected}
-          additionalText={additionalText}
-          setAdditionalText={setAdditionalText}
+          order={order}
+          handleOrderChange={handleOrderChange}
           addToCart={addToCart}
         />
       </View>

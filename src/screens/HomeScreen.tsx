@@ -8,8 +8,6 @@ import {categories} from '../data';
 import CartComponent from '../components/Cart.component';
 
 const HomeScreen = () => {
-  // const navigation = useNavigation();
-
   return (
     <SafeAreaView>
       <ScrollView
@@ -20,7 +18,6 @@ const HomeScreen = () => {
         }}>
         <HomeHeaderComponent />
         <CarouselComponent />
-
         {categories.map(item => (
           <CategoriesContainerComponent key={item} category={item} />
         ))}

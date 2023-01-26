@@ -1,14 +1,12 @@
 import {ImageSourcePropType} from 'react-native';
 
 export type Category = 'food' | 'drink';
-export type Toppings =
-  | 'boba'
-  | 'almond'
-  | 'cheese'
-  | 'ice'
-  | 'chips'
-  | 'peper'
-  | 'fruits';
+export type Topping = {
+  id: string;
+  name: string;
+  price: number;
+};
+
 export type Sizes = 'basic' | 'middle' | 'large';
 export type Product = {
   id: string;
@@ -25,14 +23,14 @@ export type Product = {
 };
 
 const categories: Category[] = ['food', 'drink'];
-export const toppings: Toppings[] = [
-  'boba',
-  'almond',
-  'cheese',
-  'ice',
-  'chips',
-  'peper',
-  'fruits',
+export const toppings: Topping[] = [
+  {price: 1, name: 'boba', id: 'boba'},
+  {price: 1, name: 'almond', id: 'almond'},
+  {price: 1, name: 'cheese', id: 'cheese'},
+  {price: 1, name: 'ice', id: 'ice'},
+  {price: 1, name: 'chips', id: 'chips'},
+  {price: 1, name: 'peper', id: 'peper'},
+  {price: 1, name: 'fruits', id: 'fruits'},
 ];
 
 const products: Product[] = [
