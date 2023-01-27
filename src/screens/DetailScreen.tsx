@@ -77,7 +77,6 @@ const DetailScreen = ({route}) => {
     setModalVisible(false);
     navigation.navigate('HomeScreen', {});
   };
-
   return (
     <SafeAreaView>
       <View
