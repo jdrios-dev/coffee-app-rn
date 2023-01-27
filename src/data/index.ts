@@ -146,7 +146,7 @@ const products: Product[] = [
     price: 4.0,
     sizes: ['basic', 'middle', 'large'],
     stock: 5,
-    isFavorite: true,
+    isFavorite: false,
   },
 ];
 

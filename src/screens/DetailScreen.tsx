@@ -5,7 +5,7 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import OrderModalComponent from '../components/OrderModal.component';
 import ScreenHeaderBackComponent from '../components/ScreenHeaderBack.component';
 import {CartContext, Order} from '../context';
-import {Product, Sizes, Topping} from '../data';
+import {Product, Topping} from '../data';
 import {getProductById} from '../data/controller';
 import colors from '../styles/colors';
 
@@ -32,7 +32,8 @@ const DetailScreen = ({route}) => {
         order.product.price +
         order.toppings?.reduce((acc, cur) => acc + cur.price, 0),
     });
-  }, [order]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [order.product, order.toppings]);
 
   const handleStartOrder = () => {
     setOrder({
