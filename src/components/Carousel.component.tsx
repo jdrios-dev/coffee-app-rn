@@ -1,4 +1,4 @@
-import {View, StyleSheet, Image, Text, Animated} from 'react-native';
+import {View, StyleSheet, Text, Animated} from 'react-native';
 import React, {useState} from 'react';
 import colors from '../styles/colors';
 import {getFavoriteProducts} from '../data/controller';
@@ -7,42 +7,32 @@ const MILLISECONDS_TO_CHANGE = 3800;
 
 const CarouselComponent = () => {
   const [activeProduct, setActiveProduct] = useState(0);
-  const [fadeAnimation] = useState(new Animated.Value(0));
+  const [fadeAnimation] = useState(new Animated.Value(1));
   const favoriteProducts = getFavoriteProducts();
   const MAX_ITEMS = favoriteProducts?.length;
 
-  setTimeout(async () => {
-    // MAX_ITEMS - 1 = The last product in my array
-    console.log(fadeAnimation);
-    await fadeIn();
-    if (activeProduct === MAX_ITEMS - 1) {
-      return setActiveProduct(0);
-    }
-    setActiveProduct(activeProduct + 1);
-    await fadeOut();
-  }, MILLISECONDS_TO_CHANGE);
-
-  const fadeIn = () => {
-    Animated.timing(fadeAnimation, {
-      toValue: 1,
-      duration: 500,
-      useNativeDriver: false,
-    }).start();
-  };
-
-  const fadeOut = () => {
+  const fadeInOut = () => {
     Animated.timing(fadeAnimation, {
       toValue: 0,
       duration: 500,
       useNativeDriver: false,
-    }).start();
+    }).start(() => {
+      // MAX_ITEMS - 1 = The last product in my array
+      activeProduct === MAX_ITEMS - 1
+        ? setActiveProduct(0)
+        : setActiveProduct(activeProduct + 1);
+      Animated.timing(fadeAnimation, {
+        toValue: 1,
+        duration: 500,
+        useNativeDriver: false,
+      }).start();
+    });
   };
 
-  // const opacity = fadeAnimation.interpolate({
-  //   inputRange: [0, 1],
-  //   outputRange: [0, 1],
-  // });
-  // console.log(opacity, fadeAnimation);
+  setTimeout(() => {
+    fadeInOut();
+  }, MILLISECONDS_TO_CHANGE);
+
   return (
     <View style={styles.carousel}>
       <ImageAAA
@@ -71,7 +61,13 @@ const CarouselComponent = () => {
   );
 };
 
-const ImageAAA = ({img, fadeAnimation}) => {
+const ImageAAA = ({
+  img,
+  fadeAnimation,
+}: {
+  img: any;
+  fadeAnimation: Animated.Value;
+}) => {
   return (
     <Animated.Image
       style={[
@@ -87,7 +83,7 @@ const ImageAAA = ({img, fadeAnimation}) => {
 
 const styles = StyleSheet.create({
   carousel: {
-    backgroundColor: colors.secondary,
+    backgroundColor: colors.primaryLigth,
     height: 250,
     borderRadius: 10,
     marginBottom: 24,
